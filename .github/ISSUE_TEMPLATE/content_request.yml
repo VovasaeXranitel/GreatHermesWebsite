@@ -1,0 +1,17 @@
+name: Content request
+description: Suggest copy or content changes
+title: "[Content] "
+labels: ["content"]
+body:
+  - type: textarea
+    id: change
+    attributes:
+      label: Requested change
+      description: What should be changed or added?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why
+      description: Why does this improve the site?
