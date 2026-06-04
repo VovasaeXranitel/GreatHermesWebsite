@@ -1,13 +1,15 @@
 # Security
 
-This is a public static website repository.
+Это публичный статический сайт. В репозитории не должно быть приватных данных.
 
-Do not commit:
+## Нельзя коммитить
 
-- Cloudflare credentials.
+- Cloudflare credentials и tunnel tokens.
 - DNS provider credentials.
-- Hermes bearer tokens.
-- Machine-specific deployment files.
-- `.env` files.
+- Hermes bearer/API tokens.
+- `.env`, локальные конфиги и machine-specific deployment files.
+- Скриншоты или логи, где видны токены, приватные URL или личные данные.
 
-For security concerns, open a GitHub issue without including live credentials.
+## Как сообщить о проблеме
+
+Открой GitHub issue без публикации живых секретов. Если проблема связана с токеном или приватной инфраструктурой, сначала отзови секрет, затем описывай инцидент.

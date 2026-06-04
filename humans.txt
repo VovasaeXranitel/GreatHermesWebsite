@@ -1,0 +1,8 @@
+Great Hermes Website
+
+Mission:
+  Bring AI agents from desktop CLI workflows into everyday interfaces:
+  messengers, phones, watches, and personal workspaces.
+
+Stack:
+  Static HTML, CSS, SVG, GitHub Pages.

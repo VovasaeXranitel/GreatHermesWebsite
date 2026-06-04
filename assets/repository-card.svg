@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
+  <title id="title">Great Hermes</title>
+  <desc id="desc">Repository card for the Great Hermes website.</desc>
+  <defs>
+    <radialGradient id="goldGlow" cx="18%" cy="22%" r="70%">
+      <stop offset="0%" stop-color="#e7b949" stop-opacity=".55"/>
+      <stop offset="58%" stop-color="#e7b949" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#e7b949" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mintGlow" cx="82%" cy="18%" r="62%">
+      <stop offset="0%" stop-color="#7ed9b8" stop-opacity=".4"/>
+      <stop offset="64%" stop-color="#7ed9b8" stop-opacity=".08"/>
+      <stop offset="100%" stop-color="#7ed9b8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10231e" stop-opacity=".92"/>
+      <stop offset="100%" stop-color="#07110f" stop-opacity=".96"/>
+    </linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M 42 0 L 0 0 0 42" fill="none" stroke="#f6f1df" stroke-opacity=".055" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="420" rx="44" fill="#07110f"/>
+  <rect width="1280" height="420" rx="44" fill="url(#goldGlow)"/>
+  <rect width="1280" height="420" rx="44" fill="url(#mintGlow)"/>
+  <rect width="1280" height="420" rx="44" fill="url(#grid)"/>
+  <rect x="58" y="54" width="1164" height="312" rx="36" fill="url(#panel)" stroke="#f6f1df" stroke-opacity=".13"/>
+  <g transform="translate(104 104)">
+    <rect x="0" y="0" width="132" height="132" rx="34" fill="#e7b949"/>
+    <path d="M39 32h19v28h16V32h19v68H74V76H58v24H39V32Z" fill="#07110f"/>
+    <circle cx="104" cy="104" r="13" fill="#7ed9b8"/>
+  </g>
+  <g fill="#f6f1df">
+    <text x="278" y="154" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" letter-spacing="-2">Great Hermes</text>
+    <text x="282" y="215" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="31" fill="#aeb9aa">ИИ-помощник за пределами CLI: ПК, мессенджеры, телефон и часы</text>
+  </g>
+  <g font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">
+    <rect x="282" y="260" width="116" height="48" rx="24" fill="#f6f1df" fill-opacity=".1" stroke="#f6f1df" stroke-opacity=".16"/>
+    <text x="315" y="292" fill="#e7b949">static</text>
+    <rect x="418" y="260" width="154" height="48" rx="24" fill="#f6f1df" fill-opacity=".1" stroke="#f6f1df" stroke-opacity=".16"/>
+    <text x="451" y="292" fill="#7ed9b8">GitHub Pages</text>
+    <rect x="592" y="260" width="171" height="48" rx="24" fill="#f6f1df" fill-opacity=".1" stroke="#f6f1df" stroke-opacity=".16"/>
+    <text x="625" y="292" fill="#78c5ff">thegreathermes.us</text>
+  </g>
+</svg>

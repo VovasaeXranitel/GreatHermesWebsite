@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Great Hermes</title>
+  <desc id="desc">Social preview image for Great Hermes.</desc>
+  <defs>
+    <radialGradient id="a" cx="18%" cy="18%" r="70%">
+      <stop offset="0%" stop-color="#e7b949" stop-opacity=".58"/>
+      <stop offset="100%" stop-color="#07110f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b" cx="82%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#7ed9b8" stop-opacity=".42"/>
+      <stop offset="100%" stop-color="#07110f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07110f"/>
+  <rect width="1200" height="630" fill="url(#a)"/>
+  <rect width="1200" height="630" fill="url(#b)"/>
+  <rect x="72" y="70" width="1056" height="490" rx="48" fill="#10231e" fill-opacity=".78" stroke="#f6f1df" stroke-opacity=".14"/>
+  <rect x="120" y="128" width="118" height="118" rx="32" fill="#e7b949"/>
+  <path d="M155 157h18v26h16v-26h18v65h-18v-24h-16v24h-18v-65Z" fill="#07110f"/>
+  <circle cx="218" cy="226" r="13" fill="#7ed9b8"/>
+  <text x="120" y="342" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="82" font-weight="700" fill="#f6f1df" letter-spacing="-2">Great Hermes</text>
+  <text x="124" y="412" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="34" fill="#aeb9aa">один ИИ-помощник для ПК, телефона, часов и мессенджеров</text>
+  <text x="124" y="486" font-family="Bahnschrift, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700" fill="#e7b949">thegreathermes.us</text>
+</svg>

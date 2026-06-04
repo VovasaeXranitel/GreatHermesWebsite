@@ -1,0 +1,16 @@
+{
+  "name": "Great Hermes",
+  "short_name": "Great Hermes",
+  "description": "ИИ-помощник за пределами CLI: ПК, мессенджеры, телефон и часы.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07110f",
+  "theme_color": "#091411",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

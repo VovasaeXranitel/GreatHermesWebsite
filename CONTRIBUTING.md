@@ -1,20 +1,25 @@
 # Contributing
 
-This repository is small by design.
+Репозиторий маленький намеренно: одна статическая страница, минимум магии, быстрые проверки.
 
-## Local Checks
-
-Preview the page locally before pushing:
+## Локальная проверка
 
 ```powershell
+npm test
 python -m http.server 8080
 ```
 
-Then open `http://127.0.0.1:8080`.
+Открой `http://127.0.0.1:8080` и проверь страницу в десктопной и мобильной ширине.
 
-## Rules
+## Перед pull request
 
-- Keep the site static unless a build step becomes clearly useful.
-- Keep text simple and readable.
-- Avoid overloading the landing page with internal infrastructure details.
-- Do not commit secrets or local deployment state.
+- Текст читается по-русски, без машинной канцелярщины.
+- Нет битой кодировки, `РџР`-мусора и случайных артефактов.
+- Нет секретов, токенов, `.env`, tunnel credentials и локальных путей машины.
+- Изменения не добавляют сборщик или зависимости без явной причины.
+
+## Стиль
+
+- Сайт должен объяснять миссию Great Hermes, а не показывать внутреннюю кухню.
+- Лучше короткий ясный блок, чем длинная техническая простыня.
+- Любая новая секция должна отвечать на вопрос пользователя: зачем это нужно и что это даёт.

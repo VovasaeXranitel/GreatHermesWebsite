@@ -1,14 +1,15 @@
 # Roadmap
 
-## Near Term
+## Ближайшие шаги
 
-- Keep the landing page text aligned with the current Great Hermes vision.
-- Add lightweight screenshots or product illustrations when the clients are ready.
-- Add links to the phone and watch client repositories.
-- Add Open Graph preview metadata and social image.
+- Добавить ссылки на мобильный клиент и клиент для часов после стабилизации их публичных репозиториев.
+- Подготовить аккуратные скриншоты продукта для сайта и README.
+- Сделать отдельную страницу с простым объяснением: как пользователь подключает свой Hermes.
+- Подключить кастомный домен `thegreathermes.us` к GitHub Pages после финальной настройки DNS.
 
-## Later
+## Позже
 
-- Add a small docs section for users who want to run their own Hermes setup.
-- Add a release/news section for public milestones.
-- Add a better deployment preview flow for pull requests.
+- Добавить раздел с публичными релизами и заметками о прогрессе.
+- Добавить лёгкую страницу документации для пользователей без технического перегруза.
+- Подготовить отдельный press/social preview image для репозитория и сайта.
+- Добавить preview-деплой для pull request, если сайт перестанет быть одной статической страницей.
