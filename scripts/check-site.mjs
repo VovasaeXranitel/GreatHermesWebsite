@@ -1,5 +1,5 @@
 import { readFileSync, existsSync, readdirSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { extname, join, relative } from "node:path";
 
 const root = process.cwd();
 const requiredFiles = [
@@ -7,10 +7,25 @@ const requiredFiles = [
   "favicon.svg",
   "site.webmanifest",
   "robots.txt",
+  "sitemap.xml",
   "CNAME",
   "README.md",
   ".github/workflows/pages.yml",
 ];
+
+const textExtensions = new Set([
+  "",
+  ".html",
+  ".svg",
+  ".json",
+  ".webmanifest",
+  ".txt",
+  ".xml",
+  ".md",
+  ".yml",
+  ".yaml",
+  ".mjs",
+]);
 
 const secretPatterns = [
   /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
@@ -18,6 +33,22 @@ const secretPatterns = [
   /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,
   /\bcloudflared[a-z0-9_-]*token\b/i,
   /\b[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{20,}\b/,
+];
+
+const mojibakeFragments = [
+  "\u0420\u040f",
+  "\u0420\u0098",
+  "\u0420\u0458",
+  "\u0420\u045a",
+  "\u0420\u040e",
+  "\u0420\u0409",
+  "\u0421\u201a",
+  "\u0421\u0403",
+  "\u0421\u040f",
+  "\u0421\u0452",
+  "\u0421\u2030",
+  "\u0421\u0458",
+  "\u0421\u0453",
 ];
 
 const failures = [];
@@ -42,16 +73,13 @@ const requiredSnippets = [
   '<meta name="twitter:card"',
   '<link rel="manifest"',
   "Great Hermes",
+  "ИИ-агент, доступный везде, где идёт работа",
 ];
 
 for (const snippet of requiredSnippets) {
   if (!index.includes(snippet)) {
     failures.push(`index.html does not contain required snippet: ${snippet}`);
   }
-}
-
-if (/(?:Рџ|Рђ|РЅ|Р°|Рё|Рґ|Рµ|Р»|Рѕ|СЂ|СЃ|СЏ|С‚|С‡|С‹|СЊ|СЋ|С‰)/.test(index)) {
-  failures.push("index.html looks like it contains mojibake / broken Cyrillic.");
 }
 
 if (cname !== "thegreathermes.us") {
@@ -68,11 +96,21 @@ function walk(dir) {
       continue;
     }
     if (stats.size > 1024 * 1024) continue;
+
     const rel = relative(root, path);
+    const ext = extname(path);
+    if (!textExtensions.has(ext)) continue;
+
     const content = readFileSync(path, "utf8");
     for (const pattern of secretPatterns) {
       if (pattern.test(content)) {
         failures.push(`Possible secret pattern in ${rel}`);
+      }
+    }
+    for (const fragment of mojibakeFragments) {
+      if (content.includes(fragment)) {
+        failures.push(`Possible mojibake / broken Cyrillic in ${rel}`);
+        break;
       }
     }
   }

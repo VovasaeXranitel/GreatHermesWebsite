@@ -3,6 +3,7 @@ Thumbs.db
 .env
 *.env
 *.log
+.tmp-*.png
 node_modules/
 dist/
 build/
