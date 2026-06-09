@@ -10,6 +10,7 @@ const requiredFiles = [
   "sitemap.xml",
   "CNAME",
   "README.md",
+  "ROADMAP.md",
   ".github/workflows/pages.yml",
 ];
 
@@ -61,19 +62,45 @@ for (const file of requiredFiles) {
 
 const read = (file) => readFileSync(join(root, file), "utf8");
 const index = read("index.html");
+const robots = read("robots.txt");
+const sitemap = read("sitemap.xml");
+const manifest = read("site.webmanifest");
 const cname = read("CNAME").trim();
+const publicUrl = "https://thegreathermes.us/";
 
 const requiredSnippets = [
   "<!doctype html>",
   '<html lang="ru">',
+  '<meta name="viewport"',
   '<meta name="description"',
   '<meta property="og:title"',
   '<meta property="og:description"',
   '<meta property="og:image"',
   '<meta name="twitter:card"',
+  '<link rel="canonical"',
   '<link rel="manifest"',
   "Great Hermes",
-  "ИИ-агент, доступный везде, где идёт работа",
+  "Один ИИ-помощник между вашими устройствами",
+  "Проект в активной разработке",
+  'id="scenario"',
+  'id="capabilities"',
+  'id="audience"',
+  'id="control"',
+  'id="status"',
+  'id="principles"',
+  'id="project"',
+  "Пример целевого сценария",
+  "Что делает Hermes между интерфейсами",
+  "Запрашивать подтверждение важных действий",
+  "Публичный сайт и roadmap",
+  "Открыть GitHub",
+  "Открыть план развития",
+  'class="menu-button"',
+  'aria-expanded="false"',
+  "scroll-margin-top",
+  ":focus-visible",
+  'class="skip-link"',
+  'class="brand" href="/"',
 ];
 
 for (const snippet of requiredSnippets) {
@@ -82,8 +109,48 @@ for (const snippet of requiredSnippets) {
   }
 }
 
+const forbiddenSnippets = [
+  "Не ещё один чат с ИИ",
+  "Главная роль Hermes",
+  "Публичные точки проекта",
+  "GitHub repository",
+  "Live preview",
+  "Primary domain",
+];
+
+for (const snippet of forbiddenSnippets) {
+  if (index.includes(snippet)) {
+    failures.push(`index.html contains obsolete or forbidden snippet: ${snippet}`);
+  }
+}
+
+if (!index.includes(publicUrl) || !robots.includes(publicUrl) || !sitemap.includes(publicUrl)) {
+  failures.push("Canonical public URL is not synchronized across index, robots and sitemap");
+}
+
 if (cname !== "thegreathermes.us") {
   failures.push(`CNAME must be thegreathermes.us, got: ${cname}`);
+}
+
+if (!manifest.includes("между устройствами")) {
+  failures.push("Web manifest description is not aligned with current positioning");
+}
+
+if (!manifest.includes('"start_url": "/"') || !manifest.includes('"src": "/favicon.svg"')) {
+  failures.push("Web manifest must use root-relative paths for the custom domain");
+}
+
+const externalLinks = [...index.matchAll(/<a\b([^>]*\btarget="_blank"[^>]*)>/g)];
+for (const [, attributes] of externalLinks) {
+  if (!/\brel="[^"]*\bnoreferrer\b[^"]*"/.test(attributes)) {
+    failures.push("External target=_blank link is missing rel=noreferrer");
+  }
+}
+
+const ids = [...index.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
+if (duplicateIds.length > 0) {
+  failures.push(`Duplicate HTML ids: ${[...new Set(duplicateIds)].join(", ")}`);
 }
 
 function walk(dir) {

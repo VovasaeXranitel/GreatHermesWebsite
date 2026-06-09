@@ -28,7 +28,7 @@
     <circle cx="96" cy="96" r="9" fill="#6aa99b"/>
   </g>
   <text x="286" y="165" font-family="Aptos Display, Segoe UI, Arial, sans-serif" font-size="76" font-weight="700" fill="#f4efe4" letter-spacing="-3">Great Hermes</text>
-  <text x="291" y="226" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="30" fill="#aaa39a">ИИ-агент, доступный везде, где идёт работа</text>
+  <text x="291" y="226" font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="30" fill="#aaa39a">Один ИИ-помощник между устройствами</text>
   <g font-family="Aptos, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">
     <rect x="292" y="268" width="118" height="44" rx="22" fill="#e8e0cf" fill-opacity=".07" stroke="#e8e0cf" stroke-opacity=".14"/>
     <text x="326" y="297" fill="#d3b16f">static</text>

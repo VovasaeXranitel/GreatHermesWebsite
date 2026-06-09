@@ -3,45 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101315">
-  <meta name="description" content="Great Hermes переносит ИИ-агентов из CLI в повседневные интерфейсы: ПК, мессенджеры, телефон, часы и рабочие процессы пользователя.">
+  <meta name="theme-color" content="#0d1112">
+  <meta name="description" content="Great Hermes — проект рабочего ИИ-помощника, который сохраняет контекст между компьютером, мессенджером и телефоном и помогает доводить задачи до результата.">
   <meta name="author" content="Great Hermes">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Great Hermes">
-  <meta property="og:description" content="ИИ-агент, доступный везде, где идёт работа.">
+  <meta property="og:title" content="Great Hermes — один ИИ-помощник между устройствами">
+  <meta property="og:description" content="Начните задачу на компьютере, продолжите с телефона и получите результат в удобном канале.">
   <meta property="og:url" content="https://thegreathermes.us/">
   <meta property="og:image" content="https://thegreathermes.us/assets/social-preview.svg">
   <meta property="og:locale" content="ru_RU">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Great Hermes">
-  <meta name="twitter:description" content="ИИ-агент, доступный везде, где идёт работа.">
+  <meta name="twitter:title" content="Great Hermes — один ИИ-помощник между устройствами">
+  <meta name="twitter:description" content="Проект рабочего ИИ-помощника с единым контекстом, инструментами и контролем пользователя.">
   <meta name="twitter:image" content="https://thegreathermes.us/assets/social-preview.svg">
-  <title>Great Hermes</title>
+  <title>Great Hermes — рабочий ИИ-помощник между устройствами</title>
   <link rel="canonical" href="https://thegreathermes.us/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0b0d0e;
-      --bg-soft: #111416;
-      --paper: #e8e0cf;
-      --text: #f4efe4;
-      --muted: #aaa39a;
-      --quiet: #7d7871;
-      --line: rgba(232, 224, 207, 0.14);
-      --line-strong: rgba(232, 224, 207, 0.24);
-      --panel: rgba(232, 224, 207, 0.055);
-      --panel-strong: rgba(232, 224, 207, 0.09);
-      --brass: #b99355;
-      --brass-bright: #d3b16f;
-      --teal: #6aa99b;
-      --ink: #171a1b;
-      --radius: 22px;
-      --shadow: 0 32px 90px rgba(0, 0, 0, 0.38);
+      --bg: #090c0d;
+      --surface: #101415;
+      --surface-2: #161a1b;
+      --text: #f3eee3;
+      --paper: #e6ddca;
+      --muted: #aaa49b;
+      --quiet: #817c75;
+      --line: rgba(230, 221, 202, 0.13);
+      --line-strong: rgba(230, 221, 202, 0.24);
+      --brass: #c7a25f;
+      --brass-light: #e0c27f;
+      --teal: #6fae9f;
+      --teal-soft: rgba(111, 174, 159, 0.14);
+      --danger-soft: rgba(206, 143, 111, 0.13);
+      --radius: 24px;
+      --shadow: 0 32px 90px rgba(0, 0, 0, 0.35);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       scroll-behavior: smooth;
@@ -53,9 +55,9 @@
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(circle at 14% 6%, rgba(185, 147, 85, 0.18), transparent 28rem),
-        radial-gradient(circle at 82% 8%, rgba(106, 169, 155, 0.12), transparent 30rem),
-        linear-gradient(180deg, #0b0d0e 0%, #111416 44%, #0b0d0e 100%);
+        radial-gradient(circle at 10% 3%, rgba(199, 162, 95, 0.17), transparent 28rem),
+        radial-gradient(circle at 88% 5%, rgba(111, 174, 159, 0.12), transparent 31rem),
+        linear-gradient(180deg, #090c0d 0%, #101415 48%, #090c0d 100%);
       font-family: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", sans-serif;
       line-height: 1.55;
       overflow-x: hidden;
@@ -69,13 +71,44 @@
       z-index: -1;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(232, 224, 207, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(232, 224, 207, 0.028) 1px, transparent 1px);
+        linear-gradient(rgba(230, 221, 202, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(230, 221, 202, 0.024) 1px, transparent 1px);
       background-size: 72px 72px;
-      mask-image: linear-gradient(to bottom, black 0%, transparent 74%);
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--brass-light);
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 100;
+      padding: 10px 14px;
+      color: #17120b;
+      background: var(--brass-light);
+      border-radius: 10px;
+      transform: translateY(-160%);
+      transition: transform 160ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
 
     .shell {
       width: min(1180px, calc(100% - 48px));
@@ -85,51 +118,52 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(11, 13, 14, 0.78);
+      z-index: 30;
       border-bottom: 1px solid var(--line);
+      background: rgba(9, 12, 13, 0.82);
+      backdrop-filter: blur(18px);
     }
 
     .nav {
-      min-height: 78px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 28px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
       font-size: 15px;
-      font-weight: 750;
+      font-weight: 760;
       letter-spacing: 0.02em;
     }
 
     .mark {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
+      flex: 0 0 auto;
       border: 1px solid var(--line-strong);
-      border-radius: 14px;
+      border-radius: 13px;
       background:
-        linear-gradient(145deg, rgba(211, 177, 111, 0.22), rgba(106, 169, 155, 0.12)),
-        #111416;
-      box-shadow: inset 0 1px rgba(255, 255, 255, 0.08);
+        linear-gradient(145deg, rgba(224, 194, 127, 0.2), rgba(111, 174, 159, 0.1)),
+        var(--surface);
     }
 
     .mark svg {
-      width: 24px;
-      height: 24px;
-      color: var(--brass-bright);
+      width: 23px;
+      height: 23px;
+      color: var(--brass-light);
     }
 
     .nav-links {
       display: flex;
-      gap: 26px;
+      align-items: center;
+      gap: 24px;
       color: var(--muted);
       font-size: 14px;
     }
@@ -142,163 +176,267 @@
       color: var(--text);
     }
 
+    .nav-github {
+      padding: 9px 14px;
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+    }
+
+    .menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .menu-button span,
+    .menu-button::before,
+    .menu-button::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+      transition: transform 160ms ease, opacity 160ms ease;
+    }
+
+    .menu-button[aria-expanded="true"] span {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"]::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"]::after {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    main > section {
+      scroll-margin-top: 88px;
+    }
+
     .hero {
-      min-height: calc(100vh - 78px);
+      min-height: calc(100vh - 72px);
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+      grid-template-columns: minmax(0, 1.06fr) minmax(390px, 0.94fr);
       align-items: center;
-      gap: 58px;
-      padding: 88px 0 112px;
+      gap: 60px;
+      padding: 68px 0 78px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 22px;
+      color: var(--brass-light);
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
     }
 
     h1 {
-      max-width: 780px;
+      max-width: 720px;
       margin: 0;
-      font-size: clamp(54px, 7.6vw, 108px);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
+      font-size: clamp(48px, 5.7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
       font-weight: 760;
     }
 
     .lead {
       max-width: 650px;
-      margin: 32px 0 0;
+      margin: 27px 0 0;
       color: var(--muted);
-      font-size: clamp(18px, 1.8vw, 22px);
+      font-size: clamp(18px, 1.55vw, 21px);
       line-height: 1.62;
     }
 
-    .hero-actions {
+    .hero-actions,
+    .final-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 38px;
+      gap: 13px;
+      margin-top: 32px;
     }
 
     .button {
+      min-height: 50px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
+      gap: 9px;
       padding: 0 20px;
       border: 1px solid var(--line-strong);
       border-radius: 999px;
-      color: var(--text);
       font-size: 14px;
-      font-weight: 720;
-      letter-spacing: 0.01em;
+      font-weight: 740;
       transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
     .button:hover {
       transform: translateY(-1px);
-      border-color: rgba(211, 177, 111, 0.62);
+      border-color: rgba(224, 194, 127, 0.65);
     }
 
     .button.primary {
       color: #17120b;
-      background: linear-gradient(135deg, #d9bd80, #a87d3e);
       border-color: transparent;
-      box-shadow: 0 18px 40px rgba(185, 147, 85, 0.18);
+      background: linear-gradient(135deg, #e1c580, #b88a45);
+      box-shadow: 0 18px 40px rgba(199, 162, 95, 0.18);
     }
 
-    .system-card {
+    .external-icon {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 auto;
+    }
+
+    .status-note {
+      max-width: 600px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 22px 0 0;
+      color: var(--quiet);
+      font-size: 13px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      margin-top: 6px;
+      border-radius: 50%;
+      background: var(--brass);
+      box-shadow: 0 0 0 5px rgba(199, 162, 95, 0.1);
+    }
+
+    .flow-card {
       position: relative;
-      padding: 30px;
+      padding: 28px;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 30px;
       background:
-        linear-gradient(145deg, rgba(232, 224, 207, 0.09), rgba(232, 224, 207, 0.035)),
-        rgba(11, 13, 14, 0.5);
+        linear-gradient(145deg, rgba(230, 221, 202, 0.08), rgba(230, 221, 202, 0.025)),
+        rgba(9, 12, 13, 0.55);
       box-shadow: var(--shadow);
-      overflow: hidden;
     }
 
-    .system-card::before {
+    .flow-card::before {
       content: "";
       position: absolute;
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 22% 18%, rgba(211, 177, 111, 0.18), transparent 18rem),
-        radial-gradient(circle at 90% 16%, rgba(106, 169, 155, 0.12), transparent 18rem);
+        radial-gradient(circle at 16% 8%, rgba(224, 194, 127, 0.15), transparent 17rem),
+        radial-gradient(circle at 92% 88%, rgba(111, 174, 159, 0.11), transparent 18rem);
     }
 
-    .system-inner {
+    .flow-label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .flow-label span:last-child {
+      color: var(--teal);
+    }
+
+    .device-flow {
       position: relative;
       display: grid;
-      gap: 18px;
-    }
-
-    .core {
-      min-height: 150px;
-      display: grid;
-      align-content: end;
-      padding: 24px;
-      border: 1px solid rgba(211, 177, 111, 0.38);
-      border-radius: 24px;
-      background:
-        linear-gradient(145deg, rgba(211, 177, 111, 0.2), rgba(106, 169, 155, 0.08)),
-        rgba(0, 0, 0, 0.18);
-    }
-
-    .core strong {
-      display: block;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: -0.045em;
-    }
-
-    .core span {
-      max-width: 360px;
-      margin-top: 12px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .channels {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
-    .channel {
-      min-height: 112px;
-      padding: 18px;
-      border: 1px solid rgba(232, 224, 207, 0.11);
-      border-radius: 20px;
-      background: rgba(232, 224, 207, 0.055);
+    .device-step {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid rgba(230, 221, 202, 0.11);
+      border-radius: 18px;
+      background: rgba(230, 221, 202, 0.045);
     }
 
-    .channel b {
+    .device-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: var(--brass-light);
+      border-radius: 13px;
+      background: rgba(199, 162, 95, 0.1);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .device-step strong {
       display: block;
-      margin-bottom: 7px;
-      color: var(--paper);
+      margin-bottom: 3px;
       font-size: 15px;
     }
 
-    .channel span {
+    .device-step p {
+      margin: 0;
       color: var(--muted);
       font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .step-state {
+      color: var(--teal);
+      font-size: 12px;
+    }
+
+    .flow-line {
+      width: 1px;
+      height: 13px;
+      margin: -1px 0 -1px 37px;
+      background: linear-gradient(var(--brass), var(--teal));
     }
 
     section {
-      padding: 96px 0;
+      padding: 90px 0;
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.72fr);
-      gap: 52px;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.7fr);
       align-items: end;
+      gap: 52px;
       margin-bottom: 38px;
     }
 
     h2 {
+      max-width: 780px;
       margin: 0;
-      font-size: clamp(38px, 4.6vw, 66px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
+      font-size: clamp(37px, 4.4vw, 62px);
+      line-height: 1;
+      letter-spacing: -0.055em;
       font-weight: 740;
     }
 
@@ -306,188 +444,508 @@
     .plain-text {
       margin: 0;
       color: var(--muted);
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.72;
     }
 
-    .statement {
-      padding: 44px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background:
-        linear-gradient(135deg, rgba(232, 224, 207, 0.095), rgba(232, 224, 207, 0.035)),
-        rgba(0, 0, 0, 0.18);
-    }
-
-    .statement p {
-      max-width: 980px;
-      margin: 0;
-      color: var(--paper);
-      font-size: clamp(25px, 3.1vw, 42px);
-      line-height: 1.18;
-      letter-spacing: -0.035em;
-    }
-
-    .principles {
+    .problem-grid,
+    .audience-grid,
+    .principles,
+    .project-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin-top: 16px;
     }
 
-    .principle {
+    .problem-card,
+    .audience-card,
+    .principle,
+    .project-card {
+      min-height: 210px;
       padding: 26px;
-      border-top: 1px solid var(--line-strong);
-      background: linear-gradient(180deg, rgba(232, 224, 207, 0.055), transparent);
-    }
-
-    .principle strong {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 21px;
-      line-height: 1.22;
-      letter-spacing: -0.02em;
-    }
-
-    .principle p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .architecture {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 18px;
-    }
-
-    .rail {
-      padding: 30px;
       border: 1px solid var(--line);
-      border-radius: 28px;
-      background: var(--panel);
+      border-radius: var(--radius);
+      background: rgba(230, 221, 202, 0.045);
     }
 
-    .rail h3 {
-      margin: 0 0 18px;
+    .card-index {
+      display: block;
+      margin-bottom: 38px;
+      color: var(--brass-light);
+      font: 12px "Cascadia Code", Consolas, monospace;
+    }
+
+    .problem-card strong,
+    .audience-card strong,
+    .principle strong,
+    .project-card strong {
+      display: block;
+      margin-bottom: 10px;
       color: var(--paper);
-      font-size: 24px;
+      font-size: 21px;
+      line-height: 1.25;
       letter-spacing: -0.025em;
     }
 
-    .rail p {
+    .problem-card p,
+    .audience-card p,
+    .principle p,
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .scenario {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.7fr) minmax(0, 1.3fr);
+      gap: 18px;
+    }
+
+    .scenario-intro,
+    .scenario-steps {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(230, 221, 202, 0.04);
+    }
+
+    .scenario-intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(145deg, rgba(199, 162, 95, 0.13), rgba(111, 174, 159, 0.07)),
+        rgba(230, 221, 202, 0.04);
+    }
+
+    .scenario-intro h3 {
+      max-width: 350px;
+      margin: 0;
+      color: var(--paper);
+      font-size: 30px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .scenario-intro p {
+      margin: 28px 0 0;
+      color: var(--muted);
+    }
+
+    .scenario-badge {
+      align-self: flex-start;
+      margin-top: 42px;
+      padding: 8px 11px;
+      color: var(--teal);
+      border: 1px solid rgba(111, 174, 159, 0.25);
+      border-radius: 999px;
+      background: var(--teal-soft);
+      font-size: 12px;
+    }
+
+    .scenario-steps {
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario-step {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: 18px;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .scenario-step:last-child {
+      border-bottom: 0;
+    }
+
+    .scenario-step code {
+      color: var(--brass-light);
+      font: 12px "Cascadia Code", Consolas, monospace;
+    }
+
+    .scenario-step strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 17px;
+    }
+
+    .scenario-step span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .capability {
+      min-height: 175px;
+      padding: 24px;
+      border-top: 1px solid var(--line-strong);
+      background: linear-gradient(180deg, rgba(230, 221, 202, 0.055), transparent);
+    }
+
+    .capability code {
+      color: var(--brass-light);
+      font: 12px "Cascadia Code", Consolas, monospace;
+    }
+
+    .capability strong {
+      display: block;
+      margin: 22px 0 9px;
+      font-size: 20px;
+    }
+
+    .capability p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .control-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 18px;
+    }
+
+    .control-copy,
+    .approval-card {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+    }
+
+    .control-copy {
+      background: rgba(230, 221, 202, 0.04);
+    }
+
+    .control-copy h3 {
+      margin: 0 0 16px;
+      font-size: 27px;
+      letter-spacing: -0.035em;
+    }
+
+    .control-copy p {
       margin: 0;
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.68;
+      line-height: 1.7;
     }
 
-    .steps {
+    .control-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .control-list span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--paper);
+      font-size: 14px;
+    }
+
+    .control-list span::before {
+      content: "✓";
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      border-radius: 50%;
+      background: var(--teal-soft);
+      font-weight: 800;
+    }
+
+    .approval-card {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(111, 174, 159, 0.1), transparent 20rem),
+        var(--surface-2);
+    }
+
+    .approval-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      color: var(--quiet);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .approval-top span:last-child {
+      color: #d7a184;
+    }
+
+    .approval-card h3 {
+      max-width: 500px;
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.24;
+      letter-spacing: -0.03em;
+    }
+
+    .approval-card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .approval-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .mock-action {
+      padding: 10px 15px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mock-action.confirm {
+      color: #17120b;
+      border-color: transparent;
+      background: var(--brass-light);
+    }
+
+    .status-board {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+    }
+
+    .status-summary,
+    .status-list {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(230, 221, 202, 0.04);
+    }
+
+    .status-summary strong {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 26px;
+      letter-spacing: -0.035em;
+    }
+
+    .status-summary p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .status-list {
       display: grid;
       gap: 10px;
     }
 
-    .step {
+    .status-row {
       display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
-      gap: 18px;
-      padding: 20px;
-      border: 1px solid rgba(232, 224, 207, 0.12);
-      border-radius: 20px;
-      background: rgba(232, 224, 207, 0.045);
-    }
-
-    .step code {
-      color: var(--brass-bright);
-      font-family: "Cascadia Code", Consolas, monospace;
-      font-size: 12px;
-    }
-
-    .step strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
-    }
-
-    .step span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .links {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 112px minmax(0, 1fr);
       gap: 16px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .link-card {
-      min-height: 170px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: var(--panel);
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    .status-row:last-child {
+      border-bottom: 0;
     }
 
-    .link-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(211, 177, 111, 0.5);
-      background: var(--panel-strong);
+    .status-tag {
+      align-self: start;
+      padding: 5px 9px;
+      border-radius: 999px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 750;
     }
 
-    .link-card strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 22px;
-      letter-spacing: -0.03em;
+    .status-tag.ready {
+      color: var(--teal);
+      background: var(--teal-soft);
     }
 
-    .link-card span {
+    .status-tag.progress {
+      color: var(--brass-light);
+      background: rgba(199, 162, 95, 0.12);
+    }
+
+    .status-tag.planned {
       color: var(--muted);
+      background: rgba(230, 221, 202, 0.07);
+    }
+
+    .status-row strong {
+      display: block;
+      margin-bottom: 4px;
       font-size: 15px;
     }
 
-    .link-card em {
-      color: var(--brass-bright);
-      font-style: normal;
+    .status-row span:last-child {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .principle {
+      min-height: 190px;
+      border-radius: 0;
+      border-width: 1px 0 0;
+      background: linear-gradient(180deg, rgba(230, 221, 202, 0.055), transparent);
+    }
+
+    .project-card {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    a.project-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(224, 194, 127, 0.5);
+      background: rgba(230, 221, 202, 0.075);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 28px;
+      color: var(--brass-light);
       font-size: 14px;
+      font-style: normal;
+    }
+
+    .final-cta {
+      padding: 48px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(199, 162, 95, 0.17), transparent 25rem),
+        radial-gradient(circle at 90% 80%, rgba(111, 174, 159, 0.12), transparent 25rem),
+        var(--surface);
+    }
+
+    .final-cta h2 {
+      max-width: 860px;
+    }
+
+    .final-cta p {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
     }
 
     footer {
-      padding: 42px 0 58px;
-      border-top: 1px solid var(--line);
+      padding: 40px 0 52px;
       color: var(--quiet);
+      border-top: 1px solid var(--line);
       font-size: 14px;
     }
 
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .footer-inner a {
+      color: var(--muted);
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      *,
+      *::before,
+      *::after {
         scroll-behavior: auto !important;
         transition: none !important;
       }
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1040px) {
       .hero,
       .section-head,
-      .architecture {
+      .scenario,
+      .control-panel,
+      .status-board {
         grid-template-columns: 1fr;
       }
 
       .hero {
         min-height: 0;
-        padding: 64px 0 88px;
+        padding: 62px 0 86px;
       }
 
-      .principles,
-      .links {
-        grid-template-columns: 1fr;
+      h1 {
+        max-width: 900px;
+      }
+
+      .flow-card {
+        max-width: 760px;
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 780px) {
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 12px 24px 20px;
+        border-bottom: 1px solid var(--line);
+        background: #090c0d;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+      }
+
+      .nav-links[data-open="true"] {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+      }
+
+      .nav-github {
+        margin-top: 6px;
+        text-align: center;
+      }
+
+      .problem-grid,
+      .audience-grid,
+      .principles,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-card,
+      .audience-card,
+      .principle,
+      .project-card {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 620px) {
       .shell {
         width: 100%;
         padding-inline: 18px;
@@ -497,20 +955,32 @@
         min-height: 68px;
       }
 
-      .nav-links {
-        display: none;
+      main > section {
+        scroll-margin-top: 78px;
+      }
+
+      .hero {
+        gap: 44px;
+        padding: 54px 18px 68px;
+      }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        font-size: 11px;
       }
 
       h1 {
-        font-size: clamp(39px, 12vw, 58px);
+        font-size: clamp(40px, 12.2vw, 58px);
         letter-spacing: -0.055em;
       }
 
       .lead {
+        margin-top: 23px;
         font-size: 17px;
       }
 
-      .hero-actions {
+      .hero-actions,
+      .final-actions {
         display: grid;
         grid-template-columns: 1fr;
       }
@@ -519,32 +989,78 @@
         width: 100%;
       }
 
-      .system-card,
-      .statement,
-      .rail {
+      .flow-card,
+      .scenario-intro,
+      .scenario-steps,
+      .control-copy,
+      .approval-card,
+      .status-summary,
+      .status-list,
+      .final-cta {
         padding: 22px;
         border-radius: 22px;
       }
 
-      .channels {
-        grid-template-columns: 1fr;
+      .device-step {
+        grid-template-columns: 40px minmax(0, 1fr);
       }
 
-      .step {
+      .device-icon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .step-state {
+        grid-column: 2;
+      }
+
+      .flow-line {
+        margin-left: 35px;
+      }
+
+      section {
+        padding: 66px 0;
+      }
+
+      .section-head {
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .section-head p {
+        font-size: 16px;
+      }
+
+      .scenario-step,
+      .status-row {
         grid-template-columns: 1fr;
         gap: 8px;
       }
 
-      section {
-        padding: 68px 0;
+      .capabilities {
+        grid-template-columns: 1fr;
+      }
+
+      .approval-actions {
+        flex-direction: column;
+      }
+
+      .mock-action {
+        text-align: center;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
   <header>
     <div class="shell nav">
-      <a class="brand" href="/" aria-label="Great Hermes">
+      <a class="brand" href="/" aria-label="Great Hermes — на главную">
         <span class="mark" aria-hidden="true">
           <svg viewBox="0 0 32 32" fill="none">
             <path d="M16 4.5 26 10.3v11.4l-10 5.8-10-5.8V10.3L16 4.5Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
@@ -553,81 +1069,233 @@
         </span>
         <span>Great Hermes</span>
       </a>
-      <nav class="nav-links" aria-label="Навигация">
-        <a href="#mission">Миссия</a>
-        <a href="#architecture">Архитектура</a>
-        <a href="#principles">Принципы</a>
-        <a href="#links">Ссылки</a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Открыть меню">
+        <span></span>
+      </button>
+      <nav class="nav-links" id="site-navigation" aria-label="Основная навигация">
+        <a href="#scenario">Сценарий</a>
+        <a href="#capabilities">Возможности</a>
+        <a href="#status">Статус</a>
+        <a href="#project">Проект</a>
+        <a class="nav-github" href="https://github.com/VovasaeXranitel/GreatHermesWebsite" target="_blank" rel="noreferrer">GitHub ↗</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <div class="shell hero">
       <div>
-        <h1>ИИ-агент, доступный везде, где идёт работа.</h1>
-        <p class="lead">Great Hermes расширяет идею агентных CLI: один рабочий помощник остаётся рядом на ПК, в мессенджере, телефоне и на часах, сохраняя контекст и помогая доводить задачи до результата.</p>
+        <span class="eyebrow">Проект в активной разработке</span>
+        <h1>Один ИИ-помощник между вашими устройствами.</h1>
+        <p class="lead">Great Hermes — проект рабочего помощника, который сохраняет контекст между компьютером, мессенджером и телефоном и помогает доводить задачи до результата.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#mission">Понять идею</a>
-          <a class="button" href="#architecture">Посмотреть устройство</a>
+          <a class="button primary" href="#scenario">Как это работает</a>
+          <a class="button" href="https://github.com/VovasaeXranitel/GreatHermesWebsite" target="_blank" rel="noreferrer">
+            Открыть GitHub
+            <svg class="external-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3h7v7M13 3 5 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11 9v4H3V5h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
+        <p class="status-note"><span class="status-dot" aria-hidden="true"></span><span>Сейчас формируются клиенты и инфраструктура. Эта страница показывает целевое устройство продукта, а не обещает готовность всех функций.</span></p>
       </div>
 
-      <aside class="system-card" aria-label="Схема Great Hermes">
-        <div class="system-inner">
-          <div class="core">
-            <strong>Hermes Core</strong>
-            <span>Единый контекст, задачи, инструменты и управление рабочими процессами.</span>
+      <aside class="flow-card" aria-label="Пример передачи задачи между устройствами">
+        <div class="flow-label"><span>Одна задача</span><span>Единый контекст</span></div>
+        <div class="device-flow">
+          <div class="device-step">
+            <span class="device-icon">ПК</span>
+            <div><strong>Поставьте задачу</strong><p>Hermes получает файлы и рабочий контекст.</p></div>
+            <span class="step-state">Начало</span>
           </div>
-          <div class="channels">
-            <div class="channel"><b>ПК</b><span>Файлы, проекты, команды, рабочие приложения.</span></div>
-            <div class="channel"><b>Мессенджеры</b><span>Быстрый вход в диалог без открытия IDE.</span></div>
-            <div class="channel"><b>Телефон</b><span>Пульт для сессий, задач, статусов и действий.</span></div>
-            <div class="channel"><b>Часы</b><span>Короткие команды и уведомления на ходу.</span></div>
+          <span class="flow-line" aria-hidden="true"></span>
+          <div class="device-step">
+            <span class="device-icon">TEL</span>
+            <div><strong>Подтвердите действие</strong><p>Важный шаг приходит на телефон с пояснением.</p></div>
+            <span class="step-state">Контроль</span>
+          </div>
+          <span class="flow-line" aria-hidden="true"></span>
+          <div class="device-step">
+            <span class="device-icon">MSG</span>
+            <div><strong>Получите результат</strong><p>Итог и статус доступны в удобном мессенджере.</p></div>
+            <span class="step-state">Готово</span>
           </div>
         </div>
       </aside>
     </div>
 
-    <section id="mission">
+    <section id="problem">
       <div class="shell">
         <div class="section-head">
-          <h2>Не ещё один чат с ИИ.</h2>
-          <p>Цель проекта — сделать помощника, который не живёт в одном окне, а становится рабочим слоем поверх привычных устройств и каналов общения.</p>
+          <h2>Работа не должна обрываться вместе с окном чата.</h2>
+          <p>Сегодня контекст остаётся в отдельных приложениях. Great Hermes исследует другой подход: одна задача продолжается там, где вам удобно работать сейчас.</p>
         </div>
-        <div class="statement">
-          <p>Мы переносим агентный подход из терминала в повседневную среду: туда, где уже находятся задачи, сообщения, документы, код, расписание и решения пользователя.</p>
+        <div class="problem-grid">
+          <article class="problem-card">
+            <span class="card-index">01 / context</span>
+            <strong>Не повторять заново</strong>
+            <p>Цель, файлы и принятые решения должны переходить между интерфейсами вместе с задачей.</p>
+          </article>
+          <article class="problem-card">
+            <span class="card-index">02 / action</span>
+            <strong>Не ограничиваться ответом</strong>
+            <p>Помощник полезен, когда умеет подключать инструменты и продвигать работу к проверяемому результату.</p>
+          </article>
+          <article class="problem-card">
+            <span class="card-index">03 / control</span>
+            <strong>Не терять контроль</strong>
+            <p>Перед важным действием человек должен видеть последствия и решать, можно ли продолжать.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="architecture">
+    <section id="scenario">
       <div class="shell">
         <div class="section-head">
-          <h2>Одна система. Несколько точек входа.</h2>
-          <p>Интерфейсы могут быть разными, но процесс должен оставаться единым: пользователь начинает задачу в одном месте и продолжает в другом без потери контекста.</p>
+          <h2>Одна задача, несколько удобных точек продолжения.</h2>
+          <p>Так выглядит целевой сценарий Great Hermes: интерфейс меняется, но задача, история и ответственность остаются едиными.</p>
         </div>
-        <div class="architecture">
-          <div class="rail">
-            <h3>Главная роль Hermes</h3>
-            <p>Hermes выступает оркестратором: понимает цель, выбирает подходящий канал, вызывает нужные инструменты и удерживает задачу в фокусе до завершения.</p>
+        <div class="scenario">
+          <div class="scenario-intro">
+            <div>
+              <h3>Подготовить обновление проекта к вечеру</h3>
+              <p>Пользователь начинает работу за компьютером, отходит от него и возвращается уже к готовому результату.</p>
+            </div>
+            <span class="scenario-badge">Пример целевого сценария</span>
           </div>
-          <div class="steps">
-            <div class="step">
-              <code>01 / context</code>
-              <div><strong>Помнит рабочую историю</strong><span>Сессии, задачи и решения не распадаются между интерфейсами.</span></div>
+          <div class="scenario-steps">
+            <div class="scenario-step">
+              <code>09:30 / ПК</code>
+              <div><strong>Начало работы</strong><span>Пользователь просит проверить проект, собрать изменения и подготовить краткий отчёт.</span></div>
             </div>
-            <div class="step">
-              <code>02 / tools</code>
-              <div><strong>Действует через инструменты</strong><span>Помощник не только отвечает, но и помогает выполнять реальные действия.</span></div>
+            <div class="scenario-step">
+              <code>11:10 / TEL</code>
+              <div><strong>Подтверждение</strong><span>Hermes объясняет, какие файлы изменятся, и запрашивает разрешение продолжить.</span></div>
             </div>
-            <div class="step">
-              <code>03 / channels</code>
-              <div><strong>Доступен там, где удобно</strong><span>ПК, мессенджер, мобильный клиент и часы становятся входами в одну систему.</span></div>
+            <div class="scenario-step">
+              <code>14:40 / MSG</code>
+              <div><strong>Промежуточный статус</strong><span>В мессенджер приходит короткое сообщение: что сделано и где требуется решение.</span></div>
             </div>
-            <div class="step">
-              <code>04 / control</code>
-              <div><strong>Оставляет контроль человеку</strong><span>Hermes предлагает и выполняет, но важные решения остаются за пользователем.</span></div>
+            <div class="scenario-step">
+              <code>17:20 / ПК</code>
+              <div><strong>Проверяемый результат</strong><span>Пользователь возвращается к изменениям, отчёту и истории выполненных действий.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Что делает Hermes между интерфейсами.</h2>
+          <p>Hermes сохраняет историю задачи, подключает разрешённые инструменты и помогает продолжить работу на другом устройстве.</p>
+        </div>
+        <div class="capabilities">
+          <article class="capability">
+            <code>01 / CONTEXT</code>
+            <strong>Сохранять контекст задачи</strong>
+            <p>История, файлы, решения и текущий статус остаются доступными при переходе между устройствами.</p>
+          </article>
+          <article class="capability">
+            <code>02 / TOOLS</code>
+            <strong>Подключать рабочие инструменты</strong>
+            <p>Помощник сможет работать с разрешёнными файлами, проектами и сервисами, а не только формулировать ответы.</p>
+          </article>
+          <article class="capability">
+            <code>03 / DEVICES</code>
+            <strong>Продолжать работу между устройствами</strong>
+            <p>Компьютер, мессенджер, мобильный клиент и часы станут интерфейсами одной системы.</p>
+          </article>
+          <article class="capability">
+            <code>04 / APPROVAL</code>
+            <strong>Запрашивать подтверждение важных действий</strong>
+            <p>Перед отправкой, публикацией или необратимым изменением Hermes покажет действие и его последствия.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="audience">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Для тех, чья работа уже распределена между приложениями.</h2>
+          <p>Проект ориентирован на людей, которым важны непрерывность контекста, действия через инструменты и прозрачность процесса.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card">
+            <span class="card-index">BUILD</span>
+            <strong>Разработчики</strong>
+            <p>Продолжать работу с проектом и получать статусы, не оставаясь постоянно у терминала.</p>
+          </article>
+          <article class="audience-card">
+            <span class="card-index">CREATE</span>
+            <strong>Авторы и исследователи</strong>
+            <p>Сохранять источники, решения и черновики в одной истории, даже когда меняется устройство.</p>
+          </article>
+          <article class="audience-card">
+            <span class="card-index">OPERATE</span>
+            <strong>Небольшие команды</strong>
+            <p>Делегировать повторяемые операции и видеть, что именно было выполнено от имени пользователя.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="control">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Помощник действует. Решение остаётся за человеком.</h2>
+          <p>Контроль — не дополнительная настройка, а базовый принцип системы. Чем серьёзнее последствия, тем яснее должно быть подтверждение.</p>
+        </div>
+        <div class="control-panel">
+          <div class="control-copy">
+            <h3>Видимые и проверяемые действия</h3>
+            <p>Hermes должен показывать, что собирается сделать, какие данные использует и какой результат получил.</p>
+            <div class="control-list">
+              <span>Пояснение перед важным шагом</span>
+              <span>Явное разрешение пользователя</span>
+              <span>История выполненных действий</span>
+            </div>
+          </div>
+          <div class="approval-card" aria-label="Пример запроса подтверждения">
+            <div class="approval-top"><span>Запрос подтверждения</span><span>Важно</span></div>
+            <h3>Опубликовать подготовленные изменения в удалённом репозитории?</h3>
+            <p>Будут отправлены 4 коммита из ветки обновления. Перед публикацией можно открыть список файлов и проверок.</p>
+            <div class="approval-actions" aria-hidden="true">
+              <span class="mock-action">Посмотреть изменения</span>
+              <span class="mock-action confirm">Подтвердить публикацию</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="shell">
+        <div class="section-head">
+          <h2>Статус проекта без обещаний раньше времени.</h2>
+          <p>Great Hermes находится на раннем этапе. Публичные материалы будут появляться по мере стабилизации клиентов и инфраструктуры.</p>
+        </div>
+        <div class="status-board">
+          <div class="status-summary">
+            <strong>Сейчас формируется основа продукта</strong>
+            <p>Публичный лендинг и направление проекта уже доступны. Клиенты, единый контекст и интеграции пока находятся в проектировании и разработке.</p>
+          </div>
+          <div class="status-list">
+            <div class="status-row">
+              <span class="status-tag ready">Доступно</span>
+              <div><strong>Публичный сайт и roadmap</strong><span>Описание идеи, принципов и ближайших шагов проекта.</span></div>
+            </div>
+            <div class="status-row">
+              <span class="status-tag progress">В работе</span>
+              <div><strong>Клиенты и инфраструктура</strong><span>Архитектура взаимодействия между устройствами и рабочими инструментами.</span></div>
+            </div>
+            <div class="status-row">
+              <span class="status-tag planned">Запланировано</span>
+              <div><strong>Публичные демонстрации и релизы</strong><span>Ссылки появятся после стабилизации соответствующих репозиториев.</span></div>
             </div>
           </div>
         </div>
@@ -637,52 +1305,94 @@
     <section id="principles">
       <div class="shell">
         <div class="section-head">
-          <h2>Принципы продукта</h2>
-          <p>Проект строится вокруг практической пользы, а не демонстрации возможностей модели ради самой демонстрации.</p>
+          <h2>Три критерия полезного помощника.</h2>
+          <p>Технология имеет смысл только тогда, когда уменьшает лишние действия и оставляет человеку понятный способ проверить результат.</p>
         </div>
         <div class="principles">
           <article class="principle">
             <strong>Меньше переключений</strong>
-            <p>Пользователь не должен помнить, где именно нужно открыть агента. Помощник должен быть рядом в текущем рабочем канале.</p>
+            <p>Помощник должен быть доступен в текущем рабочем интерфейсе, а не требовать каждый раз открывать отдельное приложение.</p>
           </article>
           <article class="principle">
             <strong>Больше завершённых задач</strong>
-            <p>Ценность измеряется не длиной ответа, а тем, насколько задача продвинулась к готовому результату.</p>
+            <p>Ценность измеряется не длиной ответа, а тем, насколько работа продвинулась к готовому и проверяемому результату.</p>
           </article>
           <article class="principle">
-            <strong>Понятное управление</strong>
-            <p>Каждое действие должно быть объяснимым, проверяемым и контролируемым человеком.</p>
+            <strong>Понятный контроль</strong>
+            <p>Важные действия должны быть видимыми, проверяемыми и подконтрольными пользователю.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="links">
+    <section id="project">
       <div class="shell">
         <div class="section-head">
-          <h2>Публичные точки проекта</h2>
-          <p>Репозитории и страницы будут дополняться по мере стабилизации клиентов и инфраструктуры.</p>
+          <h2>Проект и разработка.</h2>
+          <p>Сейчас следить за Great Hermes можно через публичный репозиторий сайта и план развития. Новые ссылки появятся только после реального запуска соответствующих частей проекта.</p>
         </div>
-        <div class="links">
-          <a class="link-card" href="https://github.com/VovasaeXranitel/GreatHermesWebsite">
-            <span><strong>Website</strong><span>Публичный лендинг проекта Great Hermes.</span></span>
-            <em>GitHub repository</em>
+        <div class="project-grid">
+          <a class="project-card" href="https://github.com/VovasaeXranitel/GreatHermesWebsite" target="_blank" rel="noreferrer">
+            <span><strong>GitHub</strong><p>Исходный код сайта, история изменений и публичные задачи.</p></span>
+            <em class="project-link">Открыть репозиторий <span aria-hidden="true">↗</span></em>
           </a>
-          <a class="link-card" href="https://vovasaexranitel.github.io/GreatHermesWebsite/">
-            <span><strong>GitHub Pages</strong><span>Текущая опубликованная версия сайта.</span></span>
-            <em>Live preview</em>
+          <a class="project-card" href="https://github.com/VovasaeXranitel/GreatHermesWebsite/blob/main/ROADMAP.md" target="_blank" rel="noreferrer">
+            <span><strong>План развития</strong><p>Ближайшие шаги по клиентам, документации, демонстрациям и релизам.</p></span>
+            <em class="project-link">Посмотреть roadmap <span aria-hidden="true">↗</span></em>
           </a>
-          <a class="link-card" href="https://thegreathermes.us">
-            <span><strong>thegreathermes.us</strong><span>Основной домен после завершения DNS-настройки.</span></span>
-            <em>Primary domain</em>
-          </a>
+          <article class="project-card">
+            <span><strong>Продуктовые репозитории</strong><p>Будут добавлены после стабилизации публичных клиентов. Пока открытых ссылок нет.</p></span>
+            <em class="project-link">Статус: подготовка</em>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="final-title">
+      <div class="shell">
+        <div class="final-cta">
+          <h2 id="final-title">Следите за тем, как идея превращается в работающий продукт.</h2>
+          <p>Репозиторий — главный публичный источник изменений Great Hermes на текущем этапе.</p>
+          <div class="final-actions">
+            <a class="button primary" href="https://github.com/VovasaeXranitel/GreatHermesWebsite" target="_blank" rel="noreferrer">Следить на GitHub ↗</a>
+            <a class="button" href="https://github.com/VovasaeXranitel/GreatHermesWebsite/blob/main/ROADMAP.md" target="_blank" rel="noreferrer">Открыть план развития ↗</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="shell">Great Hermes · ИИ-агент за пределами одного окна</div>
+    <div class="shell footer-inner">
+      <span>Great Hermes — открытый проект рабочего ИИ-помощника.</span>
+      <a href="https://github.com/VovasaeXranitel/GreatHermesWebsite" target="_blank" rel="noreferrer">GitHub ↗</a>
+    </div>
   </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-button");
+    const navigation = document.querySelector(".nav-links");
+
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Открыть меню");
+      navigation.dataset.open = "false";
+    };
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Открыть меню" : "Закрыть меню");
+      navigation.dataset.open = String(!isOpen);
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMenu();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 780) closeMenu();
+    });
+  </script>
 </body>
 </html>

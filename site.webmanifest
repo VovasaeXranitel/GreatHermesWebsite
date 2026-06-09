@@ -1,11 +1,11 @@
 {
   "name": "Great Hermes",
   "short_name": "Great Hermes",
-  "description": "ИИ-агент, доступный везде, где идёт работа.",
+  "description": "Проект рабочего ИИ-помощника с единым контекстом между устройствами.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0d0e",
-  "theme_color": "#101315",
+  "background_color": "#090c0d",
+  "theme_color": "#0d1112",
   "icons": [
     {
       "src": "/favicon.svg",
