@@ -1,8 +1,7 @@
 Great Hermes Website
 
 Mission:
-  Build one working AI assistant that keeps task context across
-  computers, messengers, phones, watches, and personal workspaces.
+  Build useful technology that helps people complete meaningful work.
 
 Stack:
   Static HTML, CSS, SVG, GitHub Pages.

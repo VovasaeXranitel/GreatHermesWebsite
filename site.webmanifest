@@ -1,7 +1,7 @@
 {
   "name": "Great Hermes",
   "short_name": "Great Hermes",
-  "description": "Проект рабочего ИИ-помощника с единым контекстом между устройствами.",
+  "description": "Новый подход к работе с искусственным интеллектом.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#090c0d",

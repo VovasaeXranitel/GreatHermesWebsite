@@ -80,24 +80,12 @@ const requiredSnippets = [
   '<link rel="canonical"',
   '<link rel="manifest"',
   "Great Hermes",
-  "Один ИИ-помощник между вашими устройствами",
-  "Проект в активной разработке",
-  'id="scenario"',
-  'id="capabilities"',
-  'id="audience"',
-  'id="control"',
-  'id="status"',
-  'id="principles"',
-  'id="project"',
-  "Пример целевого сценария",
-  "Что делает Hermes между интерфейсами",
-  "Запрашивать подтверждение важных действий",
-  "Публичный сайт и roadmap",
-  "Открыть GitHub",
-  "Открыть план развития",
-  'class="menu-button"',
-  'aria-expanded="false"',
-  "scroll-margin-top",
+  "Меньше рутины. Больше завершённой работы",
+  "Подробности продукта пока остаются внутри команды",
+  "Практический результат",
+  "Естественный опыт",
+  "Контроль человека",
+  "Мы покажем больше, когда продукт будет к этому готов",
   ":focus-visible",
   'class="skip-link"',
   'class="brand" href="/"',
@@ -116,6 +104,15 @@ const forbiddenSnippets = [
   "GitHub repository",
   "Live preview",
   "Primary domain",
+  "мобильный клиент",
+  "мессенджер",
+  "между устройствами",
+  "единый контекст",
+  "рабочие инструменты",
+  "Пример целевого сценария",
+  "Запрос подтверждения",
+  "Клиенты и инфраструктура",
+  "Продуктовые репозитории",
 ];
 
 for (const snippet of forbiddenSnippets) {
@@ -132,7 +129,7 @@ if (cname !== "thegreathermes.us") {
   failures.push(`CNAME must be thegreathermes.us, got: ${cname}`);
 }
 
-if (!manifest.includes("между устройствами")) {
+if (!manifest.includes("Новый подход к работе с искусственным интеллектом")) {
   failures.push("Web manifest description is not aligned with current positioning");
 }
 
