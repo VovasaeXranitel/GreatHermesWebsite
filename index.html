@@ -4,27 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d1112">
-  <meta name="description" content="Great Hermes — новый подход к работе с искусственным интеллектом. Проект находится в закрытой разработке.">
+  <meta name="description" content="Great Hermes создаёт более естественный способ работать с искусственным интеллектом: меньше рутины, больше внимания к цели и завершённому результату.">
   <meta name="author" content="Great Hermes">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Great Hermes">
-  <meta property="og:description" content="Меньше рутины. Больше завершённой работы.">
+  <meta property="og:description" content="Искусственный интеллект, который помогает двигать работу вперёд.">
   <meta property="og:url" content="https://thegreathermes.us/">
   <meta property="og:image" content="https://thegreathermes.us/assets/social-preview.svg">
   <meta property="og:locale" content="ru_RU">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Great Hermes">
-  <meta name="twitter:description" content="Новый подход к работе с искусственным интеллектом.">
+  <meta name="twitter:description" content="Меньше рутины. Больше завершённой работы.">
   <meta name="twitter:image" content="https://thegreathermes.us/assets/social-preview.svg">
-  <title>Great Hermes — скоро</title>
+  <title>Great Hermes — работа с ИИ по-новому</title>
   <link rel="canonical" href="https://thegreathermes.us/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
+  <script>document.documentElement.classList.add("js");</script>
   <style>
     :root {
       color-scheme: dark;
       --bg: #090c0d;
       --surface: #111516;
+      --surface-2: #171b1c;
       --text: #f3eee3;
       --paper: #e6ddca;
       --muted: #aaa49b;
@@ -34,6 +36,7 @@
       --brass: #c7a25f;
       --brass-light: #e0c27f;
       --teal: #6fae9f;
+      --teal-soft: rgba(111, 174, 159, 0.13);
       --shadow: 0 32px 90px rgba(0, 0, 0, 0.35);
     }
 
@@ -51,8 +54,8 @@
       min-height: 100vh;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 5%, rgba(199, 162, 95, 0.18), transparent 30rem),
-        radial-gradient(circle at 88% 10%, rgba(111, 174, 159, 0.12), transparent 32rem),
+        radial-gradient(circle at 12% 3%, rgba(199, 162, 95, 0.17), transparent 30rem),
+        radial-gradient(circle at 88% 8%, rgba(111, 174, 159, 0.11), transparent 32rem),
         linear-gradient(180deg, #090c0d, #101415 52%, #090c0d);
       font-family: "Aptos Display", "Segoe UI Variable Display", "Segoe UI", sans-serif;
       line-height: 1.55;
@@ -78,6 +81,11 @@
       text-decoration: none;
     }
 
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
     :focus-visible {
       outline: 3px solid var(--brass-light);
       outline-offset: 4px;
@@ -100,16 +108,27 @@
       transform: translateY(0);
     }
 
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--brass-light), var(--teal));
+    }
+
     .shell {
       width: min(1180px, calc(100% - 48px));
       margin: 0 auto;
     }
 
     header {
-      position: relative;
-      z-index: 10;
+      position: sticky;
+      top: 0;
+      z-index: 30;
       border-bottom: 1px solid var(--line);
-      background: rgba(9, 12, 13, 0.72);
+      background: rgba(9, 12, 13, 0.82);
       backdrop-filter: blur(18px);
     }
 
@@ -118,13 +137,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 28px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 13px;
+      flex: 0 0 auto;
       font-size: 15px;
       font-weight: 760;
       letter-spacing: 0.02em;
@@ -148,34 +168,79 @@
       color: var(--brass-light);
     }
 
-    .nav-status {
-      display: inline-flex;
+    .nav-links {
+      display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 24px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
     }
 
-    .nav-status::before {
+    .nav-links a {
+      transition: color 160ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      padding: 9px 14px;
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+    }
+
+    .menu-button {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+    }
+
+    .menu-button span,
+    .menu-button::before,
+    .menu-button::after {
       content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--brass);
-      box-shadow: 0 0 0 5px rgba(199, 162, 95, 0.1);
+      display: block;
+      width: 18px;
+      height: 2px;
+      margin: 4px auto;
+      background: currentColor;
+      transition: transform 160ms ease, opacity 160ms ease;
+    }
+
+    .menu-button[aria-expanded="true"] span {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"]::before {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"]::after {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
     main {
       overflow: hidden;
     }
 
+    main > section {
+      scroll-margin-top: 88px;
+    }
+
     .hero {
       min-height: calc(100vh - 72px);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
+      grid-template-columns: minmax(0, 1fr) minmax(390px, 0.76fr);
       align-items: center;
-      gap: 78px;
-      padding: 72px 0 92px;
+      gap: 68px;
+      padding: 70px 0 86px;
     }
 
     .eyebrow {
@@ -200,21 +265,22 @@
     h1 {
       max-width: 780px;
       margin: 0;
-      font-size: clamp(54px, 6.9vw, 98px);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
+      font-size: clamp(52px, 6.4vw, 91px);
+      line-height: 0.96;
+      letter-spacing: -0.068em;
       font-weight: 760;
     }
 
     .lead {
-      max-width: 620px;
-      margin: 30px 0 0;
+      max-width: 650px;
+      margin: 29px 0 0;
       color: var(--muted);
-      font-size: clamp(18px, 1.65vw, 22px);
+      font-size: clamp(18px, 1.55vw, 21px);
       line-height: 1.65;
     }
 
-    .hero-actions {
+    .hero-actions,
+    .closing-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 13px;
@@ -231,7 +297,7 @@
       border-radius: 999px;
       font-size: 14px;
       font-weight: 740;
-      transition: transform 160ms ease, border-color 160ms ease;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
     }
 
     .button:hover {
@@ -246,9 +312,15 @@
       box-shadow: 0 18px 40px rgba(199, 162, 95, 0.18);
     }
 
+    .hero-note {
+      margin: 20px 0 0;
+      color: var(--quiet);
+      font-size: 13px;
+    }
+
     .signal {
       position: relative;
-      min-height: 440px;
+      min-height: 470px;
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -261,135 +333,404 @@
       box-shadow: var(--shadow);
     }
 
-    .signal::before,
-    .signal::after {
-      content: "";
+    .signal-ring {
       position: absolute;
       border: 1px solid rgba(230, 221, 202, 0.11);
       border-radius: 50%;
+      animation: breathe 5s ease-in-out infinite;
     }
 
-    .signal::before {
-      width: 320px;
-      height: 320px;
+    .signal-ring.outer {
+      width: 340px;
+      height: 340px;
     }
 
-    .signal::after {
-      width: 210px;
-      height: 210px;
+    .signal-ring.middle {
+      width: 240px;
+      height: 240px;
+      animation-delay: -1.6s;
     }
 
     .signal-core {
       position: relative;
-      z-index: 1;
-      width: 112px;
-      height: 112px;
+      z-index: 2;
+      width: 116px;
+      height: 116px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(224, 194, 127, 0.45);
-      border-radius: 34px;
+      border-radius: 35px;
       color: var(--brass-light);
       background:
         linear-gradient(145deg, rgba(224, 194, 127, 0.18), rgba(111, 174, 159, 0.09)),
         #15191a;
       box-shadow: 0 0 80px rgba(199, 162, 95, 0.18);
+      animation: float 5s ease-in-out infinite;
     }
 
     .signal-core svg {
-      width: 56px;
-      height: 56px;
+      width: 57px;
+      height: 57px;
     }
 
     .orbit {
       position: absolute;
-      z-index: 2;
+      z-index: 3;
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--teal);
-      box-shadow: 0 0 20px rgba(111, 174, 159, 0.75);
     }
 
     .orbit.one {
       top: 20%;
-      right: 23%;
+      right: 22%;
+      background: var(--teal);
+      box-shadow: 0 0 20px rgba(111, 174, 159, 0.75);
+      animation: drift-one 7s ease-in-out infinite;
     }
 
     .orbit.two {
-      bottom: 22%;
-      left: 21%;
+      bottom: 21%;
+      left: 20%;
       background: var(--brass);
       box-shadow: 0 0 20px rgba(199, 162, 95, 0.75);
+      animation: drift-two 8s ease-in-out infinite;
     }
 
-    .principles {
-      padding: 0 0 100px;
+    .signal-caption {
+      position: absolute;
+      left: 25px;
+      right: 25px;
+      bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--quiet);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .principle-grid {
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.97); opacity: 0.55; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(-4px); }
+      50% { transform: translateY(6px); }
+    }
+
+    @keyframes drift-one {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-18px, 13px); }
+    }
+
+    @keyframes drift-two {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -12px); }
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .section-head {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .principle {
-      min-height: 190px;
-      padding: 26px;
-      border-top: 1px solid var(--line-strong);
-      background: linear-gradient(180deg, rgba(230, 221, 202, 0.05), transparent);
-    }
-
-    .principle span {
-      display: block;
-      margin-bottom: 34px;
-      color: var(--brass-light);
-      font: 12px "Cascadia Code", Consolas, monospace;
-    }
-
-    .principle strong {
-      display: block;
-      margin-bottom: 9px;
-      color: var(--paper);
-      font-size: 21px;
-      letter-spacing: -0.025em;
-    }
-
-    .principle p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .closing {
-      padding: 0 0 96px;
-    }
-
-    .closing-card {
-      padding: 48px;
-      border: 1px solid var(--line);
-      border-radius: 32px;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(199, 162, 95, 0.14), transparent 25rem),
-        radial-gradient(circle at 90% 80%, rgba(111, 174, 159, 0.1), transparent 25rem),
-        var(--surface);
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.7fr);
+      align-items: end;
+      gap: 52px;
+      margin-bottom: 38px;
     }
 
     h2 {
       max-width: 780px;
       margin: 0;
-      font-size: clamp(36px, 4.4vw, 62px);
+      font-size: clamp(38px, 4.5vw, 64px);
       line-height: 1;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.056em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    .problem-grid,
+    .audience-grid,
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .problem-card,
+    .audience-card,
+    .trust-card {
+      min-height: 220px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(230, 221, 202, 0.04);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .problem-card:hover,
+    .audience-card:hover,
+    .trust-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(224, 194, 127, 0.38);
+      background: rgba(230, 221, 202, 0.065);
+    }
+
+    .card-index {
+      display: block;
+      margin-bottom: 38px;
+      color: var(--brass-light);
+      font: 12px "Cascadia Code", Consolas, monospace;
+    }
+
+    .problem-card strong,
+    .audience-card strong,
+    .trust-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--paper);
+      font-size: 21px;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+    }
+
+    .problem-card p,
+    .audience-card p,
+    .trust-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .idea-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
+      gap: 18px;
+    }
+
+    .idea-copy,
+    .idea-demo {
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(230, 221, 202, 0.04);
+    }
+
+    .idea-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(145deg, rgba(199, 162, 95, 0.13), rgba(111, 174, 159, 0.07)),
+        rgba(230, 221, 202, 0.04);
+    }
+
+    .idea-copy h3 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .idea-copy p {
+      margin: 22px 0 0;
+      color: var(--muted);
+    }
+
+    .idea-status {
+      align-self: flex-start;
+      margin-top: 42px;
+      padding: 8px 11px;
+      color: var(--teal);
+      border: 1px solid rgba(111, 174, 159, 0.25);
+      border-radius: 999px;
+      background: var(--teal-soft);
+      font-size: 12px;
+    }
+
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .mode-tab {
+      min-height: 44px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 11px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .mode-tab[aria-selected="true"] {
+      color: #17120b;
+      background: var(--brass-light);
+    }
+
+    .mode-content {
+      min-height: 290px;
+      display: grid;
+      align-content: center;
+      padding: 34px 12px 12px;
+    }
+
+    .mode-kicker {
+      color: var(--brass-light);
+      font: 12px "Cascadia Code", Consolas, monospace;
+    }
+
+    .mode-content h3 {
+      max-width: 580px;
+      margin: 18px 0 0;
+      font-size: clamp(27px, 3vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .mode-content p {
+      max-width: 610px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .mode-meter {
+      height: 5px;
+      margin-top: 30px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: rgba(230, 221, 202, 0.08);
+    }
+
+    .mode-meter span {
+      display: block;
+      width: var(--meter-width, 42%);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--brass-light), var(--teal));
+      transition: width 320ms ease;
+    }
+
+    .audience-card {
+      min-height: 205px;
+      border-radius: 0;
+      border-width: 1px 0 0;
+      background: linear-gradient(180deg, rgba(230, 221, 202, 0.05), transparent);
+    }
+
+    .trust-card {
+      min-height: 195px;
+    }
+
+    .trust-card .icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 28px;
+      color: var(--teal);
+      border-radius: 12px;
+      background: var(--teal-soft);
+      font-weight: 800;
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 32px;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      border: 0;
+      text-align: left;
+      background: transparent;
+      cursor: pointer;
+      font-size: clamp(19px, 2vw, 24px);
+      font-weight: 710;
+    }
+
+    .faq-question span:last-child {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      color: var(--brass-light);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      transition: transform 180ms ease;
+    }
+
+    .faq-question[aria-expanded="true"] span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-width: 760px;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 220ms ease;
+    }
+
+    .faq-answer > div {
+      overflow: hidden;
+    }
+
+    .faq-answer p {
+      margin: 0;
+      padding: 0 0 24px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .faq-question[aria-expanded="true"] + .faq-answer {
+      grid-template-rows: 1fr;
+    }
+
+    .closing-card {
+      padding: 50px;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(199, 162, 95, 0.16), transparent 25rem),
+        radial-gradient(circle at 90% 80%, rgba(111, 174, 159, 0.11), transparent 25rem),
+        var(--surface);
     }
 
     .closing-card p {
-      max-width: 670px;
+      max-width: 700px;
       margin: 22px 0 0;
       color: var(--muted);
       font-size: 18px;
     }
 
     footer {
-      padding: 38px 0 48px;
+      padding: 40px 0 50px;
       color: var(--quiet);
       border-top: 1px solid var(--line);
       font-size: 14px;
@@ -402,8 +743,15 @@
       gap: 24px;
     }
 
-    .footer-inner a {
-      color: var(--muted);
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 550ms ease, transform 550ms ease;
+    }
+
+    .js [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -411,23 +759,79 @@
       *::before,
       *::after {
         scroll-behavior: auto !important;
+        animation: none !important;
         transition: none !important;
+      }
+
+      .js [data-reveal] {
+        opacity: 1;
+        transform: none;
       }
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
+      .hero,
+      .section-head,
+      .idea-panel {
+        grid-template-columns: 1fr;
+      }
+
       .hero {
         min-height: 0;
-        grid-template-columns: 1fr;
-        gap: 52px;
       }
 
       .signal {
-        max-width: 680px;
+        max-width: 720px;
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 760px) {
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 12px 24px 20px;
+        border-bottom: 1px solid var(--line);
+        background: #090c0d;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+      }
+
+      .nav-links[data-open="true"] {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+      }
+
+      .nav-cta {
+        margin-top: 6px;
+        text-align: center;
+      }
+
+      .problem-grid,
+      .audience-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .problem-card,
+      .audience-card,
+      .trust-card {
+        min-height: 0;
+      }
+    }
+
+    @media (max-width: 620px) {
       .shell {
         width: 100%;
         padding-inline: 18px;
@@ -437,16 +841,17 @@
         min-height: 68px;
       }
 
-      .nav-status {
-        font-size: 0;
+      main > section {
+        scroll-margin-top: 78px;
       }
 
       .hero {
-        padding: 54px 18px 68px;
+        gap: 46px;
+        padding: 54px 18px 70px;
       }
 
       h1 {
-        font-size: clamp(43px, 13vw, 62px);
+        font-size: clamp(42px, 12.7vw, 60px);
         letter-spacing: -0.058em;
       }
 
@@ -454,7 +859,8 @@
         font-size: 17px;
       }
 
-      .hero-actions {
+      .hero-actions,
+      .closing-actions {
         display: grid;
         grid-template-columns: 1fr;
       }
@@ -464,31 +870,47 @@
       }
 
       .signal {
-        min-height: 340px;
+        min-height: 350px;
         border-radius: 26px;
       }
 
-      .signal::before {
+      .signal-ring.outer {
         width: 270px;
         height: 270px;
       }
 
-      .signal::after {
-        width: 170px;
-        height: 170px;
+      .signal-ring.middle {
+        width: 180px;
+        height: 180px;
       }
 
-      .principle-grid {
+      section {
+        padding: 68px 0;
+      }
+
+      .section-head {
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .section-head p {
+        font-size: 16px;
+      }
+
+      .idea-copy,
+      .idea-demo,
+      .closing-card {
+        padding: 23px;
+        border-radius: 23px;
+      }
+
+      .mode-tabs {
         grid-template-columns: 1fr;
       }
 
-      .principle {
-        min-height: 0;
-      }
-
-      .closing-card {
-        padding: 28px 22px;
-        border-radius: 24px;
+      .mode-content {
+        min-height: 330px;
+        padding-inline: 4px;
       }
 
       .footer-inner {
@@ -500,6 +922,8 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
   <header>
     <div class="shell nav">
       <a class="brand" href="/" aria-label="Great Hermes — на главную">
@@ -511,58 +935,199 @@
         </span>
         <span>Great Hermes</span>
       </a>
-      <span class="nav-status">Закрытая разработка</span>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Открыть меню">
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="site-navigation" aria-label="Основная навигация">
+        <a href="#problem">Зачем</a>
+        <a href="#idea">Идея</a>
+        <a href="#audience">Для кого</a>
+        <a href="#trust">Принципы</a>
+        <a class="nav-cta" href="#follow">Следить за запуском</a>
+      </nav>
     </div>
   </header>
 
   <main id="main">
     <div class="shell hero">
-      <div>
+      <div data-reveal>
         <span class="eyebrow">Новый продукт в разработке</span>
-        <h1>Меньше рутины. Больше завершённой работы.</h1>
-        <p class="lead">Great Hermes создаёт новый способ работать с искусственным интеллектом. Подробности продукта пока остаются внутри команды.</p>
+        <h1>ИИ должен двигать работу вперёд.</h1>
+        <p class="lead">Great Hermes создаёт более естественный способ работать с искусственным интеллектом: меньше времени на управление инструментом, больше внимания к цели и результату.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#about">Узнать главное</a>
+          <a class="button primary" href="#idea">Посмотреть идею</a>
+          <a class="button" href="#follow">Следить за запуском</a>
         </div>
+        <p class="hero-note">Подробности реализации остаются внутри команды до официального анонса.</p>
       </div>
 
-      <div class="signal" aria-hidden="true">
+      <div class="signal" aria-label="Живая визуализация Great Hermes" data-reveal>
+        <span class="signal-ring outer"></span>
+        <span class="signal-ring middle"></span>
         <span class="orbit one"></span>
         <span class="orbit two"></span>
         <span class="signal-core">
-          <svg viewBox="0 0 32 32" fill="none">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
             <path d="M16 4.5 26 10.3v11.4l-10 5.8-10-5.8V10.3L16 4.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
             <path d="M10.4 16h11.2M16 8.9v14.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
         </span>
+        <span class="signal-caption"><span>Цель</span><span>Движение</span><span>Результат</span></span>
       </div>
     </div>
 
-    <section class="principles" id="about">
-      <div class="shell principle-grid">
-        <article class="principle">
-          <span>01</span>
-          <strong>Практический результат</strong>
-          <p>Технология должна помогать завершать работу, а не создавать ещё один источник шума.</p>
-        </article>
-        <article class="principle">
-          <span>02</span>
-          <strong>Естественный опыт</strong>
-          <p>Сложная система должна ощущаться простой, понятной и уместной в повседневной работе.</p>
-        </article>
-        <article class="principle">
-          <span>03</span>
-          <strong>Контроль человека</strong>
-          <p>Пользователь сохраняет право понимать, проверять и принимать важные решения.</p>
-        </article>
+    <section id="problem">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Сегодня ИИ часто добавляет ещё один слой работы.</h2>
+          <p>Нужно правильно сформулировать запрос, перенести контекст, проверить ответ и самостоятельно превратить его в следующий шаг. Мы считаем, что опыт может быть проще.</p>
+        </div>
+        <div class="problem-grid">
+          <article class="problem-card" data-reveal>
+            <span class="card-index">01 / FRICTION</span>
+            <strong>Слишком много управления</strong>
+            <p>Пользователь тратит внимание на взаимодействие с системой вместо самой задачи.</p>
+          </article>
+          <article class="problem-card" data-reveal>
+            <span class="card-index">02 / NOISE</span>
+            <strong>Много ответов, мало движения</strong>
+            <p>Красивый текст ещё не означает, что работа действительно приблизилась к завершению.</p>
+          </article>
+          <article class="problem-card" data-reveal>
+            <span class="card-index">03 / TRUST</span>
+            <strong>Непонятная граница контроля</strong>
+            <p>Человеку важно понимать, где система помогает, а где решение остаётся за ним.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="closing">
+    <section id="idea">
       <div class="shell">
-        <div class="closing-card">
-          <h2>Мы покажем больше, когда продукт будет к этому готов.</h2>
-          <p>Сейчас команда сосредоточена на разработке. Публичные демонстрации и подробности появятся ближе к запуску.</p>
+        <div class="section-head" data-reveal>
+          <h2>Идея Great Hermes — сделать ИИ частью рабочего потока.</h2>
+          <p>Не отдельным местом, куда приходится каждый раз уходить за ответом, а спокойным помощником, который понимает направление работы и помогает сохранять движение.</p>
+        </div>
+
+        <div class="idea-panel">
+          <div class="idea-copy" data-reveal>
+            <div>
+              <h3>От запроса к ощущению совместной работы</h3>
+              <p>Мы проектируем продукт вокруг намерения человека, понятного прогресса и результата, который можно проверить.</p>
+            </div>
+            <span class="idea-status">Концепция продукта</span>
+          </div>
+
+          <div class="idea-demo" data-reveal>
+            <div class="mode-tabs" role="tablist" aria-label="Ключевые стороны Great Hermes">
+              <button class="mode-tab" type="button" role="tab" aria-selected="true" data-mode="focus">Фокус</button>
+              <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="momentum">Движение</button>
+              <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="outcome">Результат</button>
+            </div>
+            <div class="mode-content" aria-live="polite">
+              <span class="mode-kicker">01 / ФОКУС</span>
+              <h3>Помощник держит в поле зрения цель, а не только последнее сообщение.</h3>
+              <p>Диалог становится способом направлять работу, а не бесконечной последовательностью отдельных запросов.</p>
+              <div class="mode-meter" aria-hidden="true"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="audience">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Для людей, которым важен не эффект, а результат.</h2>
+          <p>Great Hermes создаётся для тех, кто уже использует ИИ в работе и чувствует, что между хорошим ответом и завершённой задачей всё ещё слишком большая дистанция.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card" data-reveal>
+            <span class="card-index">CREATE</span>
+            <strong>Создавать</strong>
+            <p>Сохранять внимание на замысле, пока помощник берёт на себя часть подготовительной рутины.</p>
+          </article>
+          <article class="audience-card" data-reveal>
+            <span class="card-index">BUILD</span>
+            <strong>Разрабатывать</strong>
+            <p>Быстрее проходить путь от идеи к проверяемой версии, не теряя понимания происходящего.</p>
+          </article>
+          <article class="audience-card" data-reveal>
+            <span class="card-index">LEAD</span>
+            <strong>Организовывать</strong>
+            <p>Удерживать направление, решения и следующий шаг, когда работа состоит из множества частей.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="trust">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Полезность без потери контроля.</h2>
+          <p>Мы не хотим строить чёрный ящик, который просит просто довериться. Хороший помощник должен усиливать человека, оставаясь понятным и предсказуемым.</p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-card" data-reveal>
+            <span class="icon">✓</span>
+            <strong>Понятное действие</strong>
+            <p>Пользователь видит, что происходит и почему это помогает текущей цели.</p>
+          </article>
+          <article class="trust-card" data-reveal>
+            <span class="icon">↺</span>
+            <strong>Проверяемый результат</strong>
+            <p>Итог можно изучить, оценить и при необходимости скорректировать.</p>
+          </article>
+          <article class="trust-card" data-reveal>
+            <span class="icon">●</span>
+            <strong>Решение за человеком</strong>
+            <p>Важный выбор не должен исчезать внутри автоматизации.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="questions">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Что уже можно сказать о проекте.</h2>
+          <p>Без публикации внутренних решений и обещаний раньше времени.</p>
+        </div>
+        <div class="faq-list" data-reveal>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>Great Hermes — это ещё один чат с ИИ?</span><span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div><p>Нет. Мы исследуем более цельный опыт, в котором ИИ помогает поддерживать ход работы, а не только отвечает на отдельные сообщения.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Когда появится публичная версия?</span><span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div><p>Дата пока не объявлена. Мы покажем продукт, когда сможем продемонстрировать его честно и без преждевременных обещаний.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Почему так мало технических подробностей?</span><span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer"><div><p>Потому что сейчас важнее ясно объяснить ценность для человека. Детали реализации станут публичными ближе к запуску.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="follow">
+      <div class="shell">
+        <div class="closing-card" data-reveal>
+          <h2>Great Hermes находится в закрытой разработке.</h2>
+          <p>Мы постепенно открываем идею проекта и готовим первую публичную демонстрацию. Сохраните адрес сайта — здесь появятся новости о запуске.</p>
+          <div class="closing-actions">
+            <button class="button primary copy-domain" type="button" data-default-text="Скопировать адрес сайта">Скопировать адрес сайта</button>
+            <button class="button share-project" type="button" data-default-text="Поделиться проектом">Поделиться проектом</button>
+            <a class="button" href="#main">Вернуться к началу</a>
+          </div>
         </div>
       </div>
     </section>
@@ -574,5 +1139,136 @@
       <span>thegreathermes.us</span>
     </div>
   </footer>
+
+  <script>
+    const modeContent = {
+      focus: {
+        kicker: "01 / ФОКУС",
+        title: "Помощник держит в поле зрения цель, а не только последнее сообщение.",
+        text: "Диалог становится способом направлять работу, а не бесконечной последовательностью отдельных запросов.",
+        meter: "42%"
+      },
+      momentum: {
+        kicker: "02 / ДВИЖЕНИЕ",
+        title: "Каждый следующий шаг должен уменьшать расстояние до готового результата.",
+        text: "Great Hermes задуман вокруг прогресса: понимать, что уже сделано, что мешает и куда разумнее двигаться дальше.",
+        meter: "70%"
+      },
+      outcome: {
+        kicker: "03 / РЕЗУЛЬТАТ",
+        title: "Ценность ИИ измеряется тем, что человек смог завершить.",
+        text: "Ответ важен не сам по себе. Важнее понятный итог, который можно проверить, использовать и развивать дальше.",
+        meter: "94%"
+      }
+    };
+
+    const tabs = [...document.querySelectorAll(".mode-tab")];
+    const modePanel = document.querySelector(".mode-content");
+    const modeKicker = modePanel.querySelector(".mode-kicker");
+    const modeTitle = modePanel.querySelector("h3");
+    const modeText = modePanel.querySelector("p");
+    const modeMeter = modePanel.querySelector(".mode-meter span");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const next = modeContent[tab.dataset.mode];
+        tabs.forEach((item) => item.setAttribute("aria-selected", String(item === tab)));
+        modeKicker.textContent = next.kicker;
+        modeTitle.textContent = next.title;
+        modeText.textContent = next.text;
+        modeMeter.style.setProperty("--meter-width", next.meter);
+      });
+    });
+
+    document.querySelectorAll(".faq-question").forEach((button) => {
+      button.addEventListener("click", () => {
+        const willOpen = button.getAttribute("aria-expanded") !== "true";
+        document.querySelectorAll(".faq-question").forEach((item) => item.setAttribute("aria-expanded", "false"));
+        button.setAttribute("aria-expanded", String(willOpen));
+      });
+    });
+
+    const menuButton = document.querySelector(".menu-button");
+    const navigation = document.querySelector(".nav-links");
+
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Открыть меню");
+      navigation.dataset.open = "false";
+    };
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Открыть меню" : "Закрыть меню");
+      navigation.dataset.open = String(!isOpen);
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target.closest("a")) closeMenu();
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) closeMenu();
+    });
+
+    const progress = document.querySelector(".scroll-progress");
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = max > 0 ? `${(window.scrollY / max) * 100}%` : "0";
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+
+    const revealItems = document.querySelectorAll("[data-reveal]");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
+
+    const copyButton = document.querySelector(".copy-domain");
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText("https://thegreathermes.us");
+        copyButton.textContent = "Адрес скопирован";
+      } catch {
+        copyButton.textContent = "thegreathermes.us";
+      }
+      window.setTimeout(() => {
+        copyButton.textContent = copyButton.dataset.defaultText;
+      }, 2200);
+    });
+
+    const shareButton = document.querySelector(".share-project");
+    shareButton.addEventListener("click", async () => {
+      const shareData = {
+        title: "Great Hermes",
+        text: "ИИ должен двигать работу вперёд.",
+        url: "https://thegreathermes.us"
+      };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(shareData.url);
+          shareButton.textContent = "Ссылка скопирована";
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") shareButton.textContent = "thegreathermes.us";
+      }
+      window.setTimeout(() => {
+        shareButton.textContent = shareButton.dataset.defaultText;
+      }, 2200);
+    });
+  </script>
 </body>
 </html>

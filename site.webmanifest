@@ -1,7 +1,7 @@
 {
   "name": "Great Hermes",
   "short_name": "Great Hermes",
-  "description": "Новый подход к работе с искусственным интеллектом.",
+  "description": "Искусственный интеллект, который помогает двигать работу вперёд.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#090c0d",

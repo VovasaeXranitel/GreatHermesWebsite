@@ -80,12 +80,28 @@ const requiredSnippets = [
   '<link rel="canonical"',
   '<link rel="manifest"',
   "Great Hermes",
-  "Меньше рутины. Больше завершённой работы",
-  "Подробности продукта пока остаются внутри команды",
-  "Практический результат",
-  "Естественный опыт",
-  "Контроль человека",
-  "Мы покажем больше, когда продукт будет к этому готов",
+  "ИИ должен двигать работу вперёд",
+  "Сегодня ИИ часто добавляет ещё один слой работы",
+  "сделать ИИ частью рабочего потока",
+  "Для людей, которым важен не эффект, а результат",
+  "Полезность без потери контроля",
+  "Что уже можно сказать о проекте",
+  'id="problem"',
+  'id="idea"',
+  'id="audience"',
+  'id="trust"',
+  'id="questions"',
+  'id="follow"',
+  'class="menu-button"',
+  'class="mode-tab"',
+  'class="faq-question"',
+  'class="scroll-progress"',
+  "IntersectionObserver",
+  "navigator.clipboard",
+  "navigator.share",
+  'classList.add("js")',
+  "prefers-reduced-motion",
+  "scroll-margin-top",
   ":focus-visible",
   'class="skip-link"',
   'class="brand" href="/"',
@@ -129,7 +145,7 @@ if (cname !== "thegreathermes.us") {
   failures.push(`CNAME must be thegreathermes.us, got: ${cname}`);
 }
 
-if (!manifest.includes("Новый подход к работе с искусственным интеллектом")) {
+if (!manifest.includes("Искусственный интеллект, который помогает двигать работу вперёд")) {
   failures.push("Web manifest description is not aligned with current positioning");
 }
 
